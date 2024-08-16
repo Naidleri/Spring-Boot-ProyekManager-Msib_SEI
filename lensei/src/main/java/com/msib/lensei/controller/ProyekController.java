@@ -28,4 +28,16 @@ public class ProyekController {
         List<ProyekDTO> proyekList = proyekService.getAllProyek();
         return ResponseEntity.ok(proyekList);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProyekDTO> updateProyek(@PathVariable Integer id, @RequestBody ProyekDTO proyekDto) {
+        ProyekDTO updatedProyek = proyekService.updateProyek(id, proyekDto);
+        return ResponseEntity.ok(updatedProyek);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProyek(@PathVariable Integer id) {
+        proyekService.deleteProyek(id);
+        return ResponseEntity.noContent().build();
+    }
 }
