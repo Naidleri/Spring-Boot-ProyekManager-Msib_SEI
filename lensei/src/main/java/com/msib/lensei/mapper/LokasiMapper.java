@@ -1,17 +1,20 @@
 package com.msib.lensei.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.msib.lensei.dto.LokasiDTO;
 import com.msib.lensei.entity.Lokasi;
 
+@Component
 public class LokasiMapper {
     public LokasiDTO toDto(Lokasi lokasi) {
         return LokasiDTO.builder()
-        .id(lokasi.getId())
-        .namaLokasi(lokasi.getNamaLokasi()) 
-        .negara(lokasi.getNegara())
-        .provinsi(lokasi.getProvinsi())
-        .kota(lokasi.getKota())
-        .build();
+                .id(lokasi.getId())
+                .namaLokasi(lokasi.getNamaLokasi())
+                .negara(lokasi.getNegara())
+                .provinsi(lokasi.getProvinsi())
+                .kota(lokasi.getKota())
+                .build();
     }
 
     public Lokasi toEntity(LokasiDTO lokasiDto) {
