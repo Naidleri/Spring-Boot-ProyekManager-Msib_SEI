@@ -55,4 +55,23 @@ public class ProyekService {
                 .map(proyekMapper::toDto)
                 .collect(Collectors.toList());
     }
+    
+    public ProyekDTO updateProyek(Integer id, ProyekDTO proyekDto) {
+        Proyek proyek = proyekRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Proyek dengan id" + id + "tidak ditemukan"));
+        proyek.setNamaProyek(proyekDto.getNamaProyek());
+        proyek.setClient(proyekDto.getClient());
+        proyek.setTglMulai(proyekDto.getTglMulai());
+        proyek.setTglSelesai(proyekDto.getTglSelesai());
+        proyek.setPimpinanProyek(proyekDto.getPimpinanProyek());
+        proyek.setKeterangan(proyekDto.getKeterangan());
+        Proyek updatedProyek = proyekRepository.save(proyek);
+        return proyekMapper.toDto(updatedProyek);
+    }
+
+    public void deleteProyek(Integer id) {
+        Proyek proyek = proyekRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Proyek dengan id" + id + "tidak ditemukan"));
+        proyekRepository.delete(proyek);
+    }
 }

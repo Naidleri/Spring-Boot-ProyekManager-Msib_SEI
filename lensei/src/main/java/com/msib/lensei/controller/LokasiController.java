@@ -22,11 +22,22 @@ public class LokasiController {
         LokasiDTO savedLokasi = lokasiService.saveLokasi(lokasiDto);
         return ResponseEntity.ok(savedLokasi);
     }
-    
+
     @GetMapping
     public ResponseEntity<List<LokasiDTO>> getAllLokasi() {
         List<LokasiDTO> lokasiList = lokasiService.getAllLokasi();
         return ResponseEntity.ok(lokasiList);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<LokasiDTO> updateLokasi(@PathVariable Integer id, @RequestBody LokasiDTO lokasiDto) {
+        LokasiDTO updatedLokasi = lokasiService.updateLokasi(id, lokasiDto);
+        return ResponseEntity.ok(updatedLokasi);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteLokasi(@PathVariable Integer id) {
+        lokasiService.deleteLokasi(id);
+        return ResponseEntity.noContent().build();
+    }
 }
