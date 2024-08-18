@@ -3,6 +3,7 @@ package com.msib.lensei.entity;
 import lombok.*;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,6 +47,7 @@ public class Proyek {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "proyek")
+    @OneToMany(mappedBy = "proyek", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProyekLokasi> proyekLokasi;
+    
 }
